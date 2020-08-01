@@ -5,7 +5,7 @@ from flask import (Flask, render_template, url_for, flash,
 app = Flask(__name__)
 
 
-def build_request_body():
+def build_request_body(price):
     """Method to create body with CAPTURE intent"""
 
     order = {
@@ -13,7 +13,7 @@ def build_request_body():
             {
                 "amount": {
                     "currency_code": "EUR",
-                    "value": "1.00",
+                    "value": price,
                 },
 
             }
@@ -22,11 +22,16 @@ def build_request_body():
     return (order)
 
 
-@app.route("/", methods=['GET'])
-def payment():
-    order = build_request_body()
+@app.route("/payment/<int:price>", methods=['GET'])
+def payment(price):
+    order = build_request_body(price)
     print(order)
     return render_template('pay-buttons.html', order=order)
+
+
+@app.route("/", methods=['GET'])
+def home():
+    return render_template('home.html')
 
 
 if __name__ == "__main__":

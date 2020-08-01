@@ -78,7 +78,7 @@ class CreateOrder(PayPalClient):
         req = OrdersCreateRequest()  # creates order request object
         req.prefer('return=representation')
         # 3. Call PayPal to set up a transaction
-        req.headers["Authorization"] = "Bearer A21AAGx9kBGmT1OfCBmvmfY1i7Jh1ABija4gfEaCrTd1hRt6B-eid-MjsraKo1nOyLbeeuZp6yF8Dl6Z7-dgHL8PWWxTVrrZA"
+        req.headers["Authorization"] = "Bearer A21AAGx9******7-dgHL8PWWxTVrrZA"
         req.request_body(self.build_request_body())
         response = self.client.execute(req)
         # when in debug shows the response to the creation of the order

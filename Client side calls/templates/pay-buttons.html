@@ -12,22 +12,17 @@
 
     <div id="paypal-button-container"></div>
 
+    <script type="text/javascript">
+            var myorder = {{ order|tojson }};
+            var purchase_units = myorder["purchase_units"]
+    </script>
 
    <script>
-
     paypal.Buttons({
       createOrder: function(data, actions) {
         // This function sets up the details of the transaction, including the amount and line item details.
         return actions.order.create({
-          "purchase_units": [
-              {
-                  "amount": {
-                      "currency_code": "EUR",
-                      "value": "1.69",
-                  },
-
-              }
-          ]
+          purchase_units
         });
       },
       onApprove: function(data, actions) {

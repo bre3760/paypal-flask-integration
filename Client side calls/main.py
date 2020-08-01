@@ -13,19 +13,20 @@ def build_request_body():
             {
                 "amount": {
                     "currency_code": "EUR",
-                    "value": "1.69",
+                    "value": "1.00",
                 },
 
             }
         ]
     }
-    return jsonify(order)
+    return (order)
 
 
 @app.route("/", methods=['GET'])
 def payment():
     order = build_request_body()
-    return render_template('pay-buttons.html')
+    print(order)
+    return render_template('pay-buttons.html', order=order)
 
 
 if __name__ == "__main__":
